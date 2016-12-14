@@ -142,6 +142,41 @@ HOME=/
 
 ```
 
+### Thực hành với crontab
+Bài toán thực tế: Lấy thời gian của hệ thống và ghi vào 1 file mỗi phút 1 lần
+
+- Hướng giải quyết: 
+<ul>
+<li>Đầu tiên phải viết script để lấy thời gian sau đó in vào file và chạy thử script bằng tay</li>
+<li>Đưa vào crontab và chạy thử</li>
+</ul>	
+- Bước 1: viết script
+Tạo 1 script với nội dung như sau:
+
+```sh
+vi /root/thoigian.sh
+```
+Tạo nội dung cho script
+
+```sh
+#!/bin/bash
+
+echo `date +%c` da khoi dong >> /root/thoigian.txt
+```
+
+Cú pháp này nghĩa là: in ra thời gian và 1 dòng text và ghi lần lượt vào file /root/thoigian.txt
+
+- Bước 2: Đưa script vào crontab để thực thi
+
+```sh
+#cap nhat thoi gian
+@reboot /root/thoigian.sh
+```
+
+Cú pháp này nghĩa là với mỗi lần khởi động lại hệ thống sẽ chạy file /root/thoigian.sh ==> Sẽ in ra ngày tháng vào file /root/thoigian.txt
+
+- Reboot lại và kiểm chứng kết quả
+
 
 <a name="8"></a>
 ## 8. Tài liệu tham khảo
